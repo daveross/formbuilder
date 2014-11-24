@@ -1131,7 +1131,11 @@ this["Formbuilder"]["templates"]["view/base_non_input"] = function(obj) {
 obj || (obj = {});
 var __t, __p = '', __e = _.escape;
 with (obj) {
-__p += '';
+__p += '<div class=\'subtemplate-wrapper\'>\n\t<div class=\'cover\'></div>\n\t' +
+((__t = ( Formbuilder.fields[rf.get(Formbuilder.options.mappings.FIELD_TYPE)].view({rf: rf}) )) == null ? '' : __t) +
+'\n\t' +
+((__t = ( Formbuilder.templates['view/duplicate_remove']({rf: rf}) )) == null ? '' : __t) +
+'\n</div>';
 
 }
 return __p

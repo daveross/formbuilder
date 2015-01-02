@@ -307,6 +307,9 @@ class BuilderView extends Backbone.View
     @$el.find(".fb-edit-field-wrapper").html $newEditEl
     @$el.find(".fb-tabs a[data-target=\"#editField\"]").click()
     @scrollLeftWrapper($responseFieldEl)
+
+    @formBuilder.trigger 'showEditView', $newEditEl, model
+
     return @
 
   ensureEditViewScrolled: ->

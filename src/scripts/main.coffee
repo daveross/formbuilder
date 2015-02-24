@@ -170,9 +170,6 @@ class BuilderView extends Backbone.View
         @saveForm.call(@)
       , 5000
 
-    jQuery(window).bind 'beforeunload', =>
-      if @formSaved then undefined else Formbuilder.options.dict.UNSAVED_CHANGES
-
   reset: ->
     @$responseFields.html('')
     @addAll()
@@ -244,6 +241,9 @@ class BuilderView extends Backbone.View
     @$responseFields.sortable('destroy') if @$responseFields.hasClass('ui-sortable')
     @$responseFields.sortable
       forcePlaceholderSize: true
+      delay: 150
+      distance: 10
+      axis: "y"
       placeholder: 'sortable-placeholder'
       stop: (e, ui) =>
         if ui.item.data('field-type')
@@ -259,6 +259,8 @@ class BuilderView extends Backbone.View
     @setDraggable()
 
   setDraggable: ->
+    # soft deleted draggable
+    return
     $addFieldButtons = @$el.find("[data-field-type]")
 
     $addFieldButtons.draggable
@@ -317,6 +319,8 @@ class BuilderView extends Backbone.View
     @scrollLeftWrapper jQuery(".fb-field-wrapper.editing")
 
   scrollLeftWrapper: ($responseFieldEl) ->
+    # scroll has been soft deleted
+    return
     @unlockLeftWrapper()
     return unless $responseFieldEl[0]
     jQuery.scrollWindowTo ((@$el.offset().top + $responseFieldEl.offset().top) - @$responseFields.offset().top), 200, =>
@@ -374,7 +378,7 @@ class Formbuilder
       x?.replace(/\n/g, '<br />')
 
   @options:
-    BUTTON_CLASS: 'fb-button'
+    BUTTON_CLASS: 'button'
     HTTP_ENDPOINT: ''
     HTTP_METHOD: 'POST'
     AUTOSAVE: true

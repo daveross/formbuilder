@@ -315,7 +315,7 @@
 			if ( ! ! Formbuilder.options.AUTOSAVE ) {
 				return setInterval( function () {
 					return _this.saveForm.call( _this );
-				}, 5000 );
+				}, 500 );
 			}
 		};
 

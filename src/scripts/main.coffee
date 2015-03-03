@@ -168,7 +168,7 @@ class BuilderView extends Backbone.View
     unless !Formbuilder.options.AUTOSAVE
       setInterval =>
         @saveForm.call(@)
-      , 5000
+      , 500
 
   reset: ->
     @$responseFields.html('')
